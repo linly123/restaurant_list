@@ -55,6 +55,9 @@
           <li>
             <a href="./restaurant/{{ this._id }}">Detail</a>
             <a href="./restaurant/{{ this._id }}/edit">Edit</a>
+            <form action="./restaurant/{{ this._id }}/delete" method="POST" style="display: inline;">
+              <button type="submit">delete</button>
+            </form>
           </li>
         </ul>
 

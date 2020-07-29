@@ -94,6 +94,15 @@ app.post("/restaurant/:id/edit", (req, res) => {
     .catch((error) => console.log(error));
 });
 
+//刪除特定資料
+app.post("/restaurant/:id/delete", (req, res) => {
+  const id = req.params.id;
+  return Rest.findById(id)
+    .then((rest) => rest.remove())
+    .then(() => res.redirect("/"))
+    .catch((error) => console.log(error));
+});
+
 app.listen(port, () => {
   console.log(`this is running on http://localhost:${port}`);
 });
