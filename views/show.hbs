@@ -13,7 +13,7 @@
       <a href="/restaurant/{{ rest._id }}/edit">
         <h4> Edit </h4>
       </a>
-      <form action="/restaurant/{{ rest._id }}/delete" method="POST" style="display: inline;">
+      <form action="/restaurant/{{ rest._id }}?_method=DELETE" method="POST" style="display: inline;">
         <button type="submit">delete</button>
       </form>
       <p class="mb-1">

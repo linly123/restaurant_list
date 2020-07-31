@@ -1,12 +1,12 @@
 const express = require("express");
-const app = express();
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const port = 3000;
 const Rest = require("./models/rest");
 const mongoose = require("mongoose");
+const methodOverried = require("method-override");
 
-// mongoose
+const app = express();
+// mongooseß
 mongoose.connect("mongodb://localhost/restaurant-list", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -29,6 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // setting static files
 app.use(express.static("public"));
+
+//use method override
+app.use(methodOverried("_method"));
 
 // render all restaurant
 app.get("/", (req, res) => {
@@ -74,7 +77,7 @@ app.get("/restaurant/:id/edit", (req, res) => {
 });
 
 // 修改特定資料:post
-app.post("/restaurant/:id/edit", (req, res) => {
+app.put("/restaurant/:id", (req, res) => {
   const id = req.params.id;
   const name = req.body.name;
   const category = req.body.category;
@@ -95,7 +98,7 @@ app.post("/restaurant/:id/edit", (req, res) => {
 });
 
 //刪除特定資料
-app.post("/restaurant/:id/delete", (req, res) => {
+app.delete("/restaurant/:id", (req, res) => {
   const id = req.params.id;
   return Rest.findById(id)
     .then((rest) => rest.remove())
@@ -103,8 +106,8 @@ app.post("/restaurant/:id/delete", (req, res) => {
     .catch((error) => console.log(error));
 });
 
-app.listen(port, () => {
-  console.log(`this is running on http://localhost:${port}`);
+app.listen(3000, () => {
+  console.log(`this is running on http://localhost:3000`);
 });
 
 app.get("/search", (req, res) => {
