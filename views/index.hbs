@@ -2,26 +2,35 @@
   <div class="banner"></div>
 </header>
 
-<!-- search bar -->
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search" style='margin-bottom: 20px'>
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" value='{{keyword}}' class="form-control" placeholder="輸入餐廳、分類"
-            aria-label="Restaurant Name..." value="" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-          </div>
-        </div>
-      </form>
-      <!-- create new restaurant -->
-      <button type="button" class="btn btn-danger"><a href="./restaurant/new"
-          style='color: white; text-decoration: none'>新增餐廰</a></button>
+<!-- search bar & sort by-->
+<div class='filter-container'>
+  <form action="/search" class="search-bar">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">
+          <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i>
+            </i></button></span>
+      </div>
+      <input type="text" name="keyword" value='{{keyword}}' class="form-control" placeholder="輸入餐廳、分類"
+        aria-label="Restaurant Name..." value="" aria-describedby="search-button">
+    </div>
+  </form>
+
+  <div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      排序/篩選
+    </a>
+
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="/asc">A 至 Z</a>
+      <a class="dropdown-item" href="/desc">Z 至 A</a>
+      <a class="dropdown-item" href="/category">類別</a>
+      <a class="dropdown-item" href="/location">地區</a>
     </div>
   </div>
 </div>
+
 
 
 
@@ -49,17 +58,17 @@
             </span>
 
           </div>
+          <ul class='features'>
+            <li>
+              <a href="./restaurant/{{ this._id }}">Detail</a>
+              <a href="./restaurant/{{ this._id }}/edit">Edit</a>
+              <form action="./restaurant/{{ this._id }}/?_method=DELETE" method="POST" style="display: inline;">
+                <button class='del-btn' type="submit">delete</button>
+              </form>
+            </li>
+          </ul>
         </div>
-        </a>
-        <ul>
-          <li>
-            <a href="./restaurant/{{ this._id }}">Detail</a>
-            <a href="./restaurant/{{ this._id }}/edit">Edit</a>
-            <form action="./restaurant/{{ this._id }}/?_method=DELETE" method="POST" style="display: inline;">
-              <button type="submit">delete</button>
-            </form>
-          </li>
-        </ul>
+
 
         {{/each}}
       </div>
