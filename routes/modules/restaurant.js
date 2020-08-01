@@ -12,12 +12,24 @@ router.get("/new", (req, res) => {
 
 // 新的路由用作接住表單資料
 router.post("/", (req, res) => {
-  const name = req.body.name;
-  const category = req.body.category;
-  const rating = req.body.rating;
-  const image = req.body.image;
-  console.log("name", name);
-  return Rest.create({ name, category, rating, image }) // 存入資料庫
+  const {
+    name,
+    category,
+    rating,
+    image,
+    location,
+    description,
+    phone,
+  } = req.body;
+  return Rest.create({
+    name,
+    category,
+    rating,
+    image,
+    location,
+    description,
+    phone,
+  }) // 存入資料庫
     .then(() => res.redirect("/")) // 新增完成後導回首頁
     .catch((error) => console.log(error));
 });
