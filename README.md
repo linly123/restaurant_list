@@ -22,7 +22,7 @@ Installing - 安裝流程
   
 2.進入並存放此專案的資料夾<br><pre>cd restaurant_restaurantList</pre>
   
-3.安裝 npm 套件<br><pre>於Terminal 輸入 npm install 指令</pre>
+3.安裝 npm 套件<br><pre>於Terminal 輸入 npm install nodemon指令</pre>
 
 4.安裝 nodemon 套件<br><pre>於Terminal 輸入 nodemon app.js 指令</pre>
 
